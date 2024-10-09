@@ -1,0 +1,54 @@
+---
+title: "Coding Exercises"
+author: "Doug Dunn"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("setup.R")
+```
+
+```{r}
+data("knz_bison")
+```
+
+Calculating the age of each bison in new column "age"
+
+```{r}
+knz_bison <- knz_bison %>% 
+  mutate(age = rec_year - animal_yob)
+```
+
+Creating function to filter bison by weight
+
+```{r}
+min_weight <- function(w){
+  filtered_knz_bison <<- knz_bison %>% 
+    filter(animal_weight > w)
+  return(filtered_knz_bison)
+}
+```
+
+Testing function with value of 800.
+
+```{r}
+min_weight(800)
+```
+
+Boxplot of weight distribution of female and male bison.
+
+```{r}
+knz_bison %>% 
+  group_by(animal_sex) %>% 
+  ggplot(aes(x = animal_sex, y = animal_weight)) +
+  geom_boxplot()
+```
+
+T-test of weights by sex
+
+
