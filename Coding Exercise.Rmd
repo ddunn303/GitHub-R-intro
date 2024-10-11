@@ -51,4 +51,10 @@ knz_bison %>%
 
 T-test of weights by sex
 
+```{r}
+knz_bison %>% 
+  select(animal_weight, animal_sex) %>% 
+  t.test(animal_sex ~ animal_weight, var.equal = TRUE, detailed = TRUE)
+```
+
 
